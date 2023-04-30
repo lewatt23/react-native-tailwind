@@ -1,11 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
+import { TailwindProvider } from "tailwind-rn";
+import utilities from "./tailwind.json";
+
+const MyComponent = () => {
+  const tailwind = useTailwind();
+
+  return <Text style={tailwind("text-blue-600")}>Hello world</Text>;
+};
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <TailwindProvider utilities={utilities}>
+      <MyComponent />
+    </TailwindProvider>
   );
 }
